@@ -1,32 +1,17 @@
-
-stack = [   
-["Z","N"],
-["M","C","D"],
-["P"],
-]
-
-
-
-File.readlines('test.txt').each do |line|
-
-amount = line.scan(/\d+/)[0]
-origin = line.scan(/\d+/)[1]
-destin = line.scan(/\d+/).last
-
-
-tmp = []
-
-amount.to_i.times do
-
-        tmp.push(stack[origin.to_i-1].pop) # Gets the top of the stack (-1 to adjust for array index)
-        stack[destin.to_i-1].push(tmp.pop) # Pushes contents to new destination
-end
-
-end
-
-stack.each do |x|
-puts x.pop
-end
-
-
-#FAIL FSZWBPTCG
+# Define a method that takes an array and an index
+def split_array_at_index(array, index)
+        # Split the array into two sub-arrays using the 'slice' method,
+        # and return the sub-arrays
+        return array.slice(0, index), array.slice(index + 1, array.length)
+      end
+      
+      # Define an array
+      array = [1, 2, 3, 4, 5]
+      
+      # Split the array at index 2 without the element at index 2
+      first, second = split_array_at_index(array, 2)
+      
+      # Print the resulting sub-arrays
+      puts first.inspect
+      puts second.inspect
+      
