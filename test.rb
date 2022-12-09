@@ -1,17 +1,15 @@
-# Define a method that takes an array and an index
-def split_array_at_index(array, index)
-        # Split the array into two sub-arrays using the 'slice' method,
-        # and return the sub-arrays
-        return array.slice(0, index), array.slice(index + 1, array.length)
-      end
-      
-      # Define an array
-      array = [1, 2, 3, 4, 5]
-      
-      # Split the array at index 2 without the element at index 2
-      first, second = split_array_at_index(array, 2)
-      
-      # Print the resulting sub-arrays
-      puts first.inspect
-      puts second.inspect
-      
+def process(row)
+  row.reduce([-1]) do |memo, cell|
+    cell[:visible] = true if cell[:height] > memo.max
+    cell[:scores] << ((memo.index { |i| i >= cell[:height] } || (memo.size - 2)) + 1)
+    [cell[:height]] + memo
+  end
+end
+
+input = File.readlines('input8.txt', chomp: true)
+            .map { |i| i.chars.map { |j| { height: j.to_i, visible: false, scores: [] } } }
+
+[input, input.transpose].each { |i| i.each { |j| [j, j.reverse].each { |k| process k } } }
+
+puts input.flatten.select { |i| i[:visible].eql? true }.count
+puts input.flatten.map { |i| i[:scores].reduce(:*) }.max
