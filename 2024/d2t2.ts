@@ -68,3 +68,5 @@ function safeDistance(first: number, second: number): boolean {
 }
 
 console.log('Number of safe reports:', safeReports);
+
+// Number of safe reports: 604
