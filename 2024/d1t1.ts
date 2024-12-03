@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import * as fs from 'node:fs';
 
 // Read File
 let fileContent = fs.readFileSync('d1.txt', 'utf8')
