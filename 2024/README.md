@@ -1,1 +1,1 @@
-files can be run by using $npx tsx d1t1.ts 
+files can be run by using  ~deno run --allow-read $filename
