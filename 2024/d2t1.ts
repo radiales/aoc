@@ -1,17 +1,18 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs'
+
 
 // Read Data
-let fileContent = fs.readFileSync('d2.txt', 'utf8');
-let lines = fileContent.split('\n');
+let fileContent = fs.readFileSync('d2.txt', 'utf8')
+let lines = fileContent.split('\n')
 
-let list: number[][] = [];
+let list: number[][] = []
 
 // Normalize data
 for (let i = 0; i < lines.length; i++) {
-    let line = lines[i].trim();
+    let line = lines[i].trim()
     if (line.length > 0) {
-        let parts = line.split(/\s+/).map(Number); 
-        list.push(parts);
+        let parts = line.split(/\s+/).map(Number)
+        list.push(parts)
     }
 }
 
@@ -21,10 +22,10 @@ let ans = 0;
 list.forEach((arrayLine) => {
     if (arrayLine[0] > arrayLine[1]) {
         // Falling sequence check
-        ans += calculateRecursive(arrayLine.slice(), false);
+        ans += calculateRecursive(arrayLine.slice(), false)
     } else {
         // Growing sequence check
-        ans += calculateRecursive(arrayLine.slice(), true);
+        ans += calculateRecursive(arrayLine.slice(), true)
     }
 });
 
@@ -34,12 +35,12 @@ function calculateRecursive(array: number[], isGrowing: boolean): number {
         return 1;
     }
 
-    const current = array[0];
-    const next = array[1];
+    const current = array[0]
+    const next = array[1]
 
     if (next === undefined) {
         // End of array reached
-        return 1;
+        return 1
     }
 
     if (isGrowing && current < next && safeDistance(current,next) ) {
@@ -50,7 +51,7 @@ function calculateRecursive(array: number[], isGrowing: boolean): number {
         return calculateRecursive(array.slice(1), isGrowing);
     } else {
         // Condition not satisfied
-        return 0;
+        return 0
     }
 }
 
