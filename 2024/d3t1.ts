@@ -14,3 +14,5 @@ while ((match = regex.exec(fileContent)) !== null) {
 }
 
 console.log('ans:', totalSum)
+
+// ans: 182780583
