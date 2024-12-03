@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import * as fs from 'node:fs';
 
 let fileContent = fs.readFileSync('d1.txt', 'utf8')
 let lines = fileContent.split('\n')
